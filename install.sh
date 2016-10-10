@@ -2,7 +2,7 @@
 
 INSTALL_FLAG=false
 UNINSTALL_FLAG=false
-TARGET_DIR="/usr/local/bin"
+TARGET_DIR="/usr/local"
 
 function show_help
 {
@@ -10,20 +10,20 @@ function show_help
 SYNOPSIS:
     install.sh [OPTION] PACKAGE
 OPTIONS:
-    --install     Install a package.
-    --uninstall   Uninstall a package.
-    --help        Show help messages.
+    -i, --install     Install a package.
+    -d, --delete      Delete a package.
+    -h, --help        Show help messages.
 EXAMPLE:
-    install.sh --install ydcv"
+    install.sh -i ydcv"
 }
 
 if [ "$1" != "" ]; then
     case $1 in
-        --install)
+        -i | --install)
             INSTALL_FLAG=true
             shift
             ;;
-        --uninstall)
+        -d | --delete)
             UNINSTALL_FLAG=true
             shift
             ;;
