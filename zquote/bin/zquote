@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$HOME/Dropbox/Workspace/zQuote/bin/zquote "$@"

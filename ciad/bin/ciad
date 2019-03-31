@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+# homebrew update and clean
+function brew_update_clean () {
+    brew update
+    brew upgrade
+    brew cleanup
+}
+
+# backup bookmarks
+function backup_bookmarks () {
+    BMDIR="$HOME/Dropbox/Workspace/bookmarks"
+    cp "$HOME/Dropbox/Documents/Export/bookmarks.html" "$BMDIR/bookmarks.html"
+    make -C "$BMDIR"
+}
+
+# clean_mymac
+function clean_mac () {
+    # clean homebrew cache
+    rm -rf ~/Library/Caches/Homebrew/*
+    # clean crash report
+    rm -rf ~/Library/Logs/CrashReporter/*
+    # clean jedi cache
+    rm -rf ~/Library/Caches/Jedi/*
+    # clean stack caches [haskell]
+    if ! hash stack 2> /dev/null; then
+        rm -rf ~/.stack/
+    fi
+}
+
+# deploy blog
+function deploy_blog () {
+    cd ~/Dropbox/Workspace/gujiaxi.com
+    rake deploy
+    cd -
+}
+
+# Let's Do it!
+brew_update_clean
+deploy_blog
+backup_bookmarks
+clean_mac
