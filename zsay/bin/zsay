@@ -1,0 +1,24 @@
+#!/bin/sh
+
+CLIP="$HOME/Dropbox/Documents/Export/My Clippings.txt"
+
+awk 'BEGIN {
+  clipping = "";
+  i=0;
+  srand();
+}
+{
+  if ($0 !~ /==========/) {
+    if ($0 !~ /- /) {
+      clipping = $0 "\n" clipping;
+    } else {
+      clipping = "-- " clipping;
+    }
+  } else {
+  clippings[i++] = clipping;
+  clipping = "";
+}
+}
+END {
+  print clippings[int(rand()*i)];
+}' "$CLIP"

@@ -2,7 +2,7 @@
 
 INSTALL_FLAG=false
 UNINSTALL_FLAG=false
-TARGET_DIR="./_local/"
+TARGET_DIR="$HOME/.local/"
 
 function show_help
 {
